@@ -1,14 +1,10 @@
 "use client"
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-
 
 export default function EditNote({ note }: any) {
     const [title, setTitle] = useState(note.title);
     const [content, setContent] = useState(note.content);
-
-    const router = useRouter()
 
     const update = async () => {
         await fetch(`http://127.0.0.1:8090/api/collections/Notes/records/${note.id}`, {
