@@ -17,8 +17,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
+    <html>
+      <body>
         <main>
           <nav>
             <Link href="/">
@@ -28,8 +28,8 @@ export default function RootLayout({
               Notes
             </Link>
           </nav>
+          {children}
         </main>
-        {children}
       </body>
     </html>
   );

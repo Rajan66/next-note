@@ -1,9 +1,12 @@
 import Link from 'next/link';
 import styles from './Notes.module.css';
-// import CreateNote from './Create';
+import CreateNote from './CreateNote';
+import DeleteNote from './DeleteNote';
 
 async function getNotes() {
-    const res = await fetch('http://127.0.0.1:8090/api/collections/Notes/records?page=1&perPage=30')
+    const res = await fetch('http://127.0.0.1:8090/api/collections/Notes/records',
+        { cache: 'no-store' }
+    )
     const data = await res.json()
     return data?.items as any[]
 }
@@ -20,8 +23,7 @@ export default async function NotesPage() {
                     return <Note key={note.id} note={note} />;
                 })}
             </div>
-
-            {/* <CreateNote /> */}
+            <CreateNote />
         </div>
     );
 }
@@ -36,6 +38,7 @@ function Note({ note }: any) {
                 <h5>{content}</h5>
                 <p>{created}</p>
             </div>
+            <DeleteNote note={note} />
         </Link>
     );
 }
